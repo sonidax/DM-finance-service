@@ -62,44 +62,6 @@ export default function GMP() {
           </p>
         </div>
 
-        {/* Compact GMP strip (summary row) */}
-        <div className="mb-6">
-          <div className="rounded-xl bg-card p-4">
-            <div className="flex items-start justify-between mb-3">
-              <div>
-                <h3 className="font-semibold text-lg">Grey Market Snapshot</h3>
-                <p className="text-sm text-muted-foreground">Realtime GMP snapshot for popular IPOs</p>
-              </div>
-              <div className="text-sm text-muted-foreground">Last updated: {new Date().toLocaleTimeString('en-IN')}</div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {gmpData.slice(0,4).map((item) => {
-                const positive = item.gmp > 0;
-                return (
-                  <div key={item.id} className="flex items-center gap-4 p-3 rounded-md border border-border/40">
-                    <div className="h-10 w-10 rounded-md bg-muted flex items-center justify-center">
-                      {positive ? <TrendingUp className="h-5 w-5 text-success" /> : <TrendingDown className="h-5 w-5 text-destructive" />}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3">
-                        <span className="font-semibold">{item.name}</span>
-                        <span className="text-xs text-muted-foreground">IPO ₹{item.ipo_price}</span>
-                      </div>
-                      <div className="mt-1 text-sm">
-                        <span className={`font-semibold ${positive ? 'text-success' : item.gmp < 0 ? 'text-destructive' : 'text-muted-foreground'}`}>
-                          {item.gmp > 0 ? '+' : ''}₹{item.gmp}
-                        </span>
-                        <span className="ml-2 text-muted-foreground">Expected ₹{item.expected_listing} • {item.change > 0 ? '+' : ''}{item.change}%</span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <Card className="bg-success/5 border-success/20">
